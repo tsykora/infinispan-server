@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
-      <groupId>org.infinispan.server</groupId>
-      <artifactId>infinispan-server-versions</artifactId>
-      <version>6.0.0-SNAPSHOT</version>
-      <relativePath>../versions/pom.xml</relativePath>
-   </parent>
+    <parent>
+        <groupId>org.infinispan.server</groupId>
+        <artifactId>infinispan-server-versions</artifactId>
+        <version>6.0.0-SNAPSHOT</version>
+        <relativePath>../versions/pom.xml</relativePath>
+    </parent>
 
-   <artifactId>infinispan-server-testsuite</artifactId>
-   <name>Infinispan Server - Test Suite</name>
+    <artifactId>infinispan-server-testsuite</artifactId>
+    <name>Infinispan Server - Test Suite</name>
 
-   <packaging>pom</packaging>
+    <packaging>pom</packaging>
 
-   <properties>
-      <ispnserver.project.dir>${basedir}/..</ispnserver.project.dir>
-   </properties>
+    <properties>
+        <ispnserver.project.dir>${basedir}/..</ispnserver.project.dir>
+    </properties>
 
-   <modules>
-      <module>example-configs</module>
-   </modules>
+    <modules>
+        <module>functional-tests</module>
+    </modules>
 
 </project>

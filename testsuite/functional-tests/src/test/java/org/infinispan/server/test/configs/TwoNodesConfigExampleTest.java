@@ -25,7 +25,7 @@ import org.infinispan.arquillian.model.RemoteInfinispanCache;
 import org.infinispan.client.hotrod.RemoteCache;
 import org.infinispan.client.hotrod.RemoteCacheManager;
 import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
-import org.infinispan.server.test.rest.RESTHelper;
+import org.infinispan.server.test.client.rest.RESTHelper;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,9 +35,9 @@ import org.junit.runner.RunWith;
 import javax.servlet.http.HttpServletResponse;
 import java.net.Inet6Address;
 
-import static org.infinispan.server.test.rest.RESTHelper.*;
-import static org.junit.Assert.assertTrue;
+import static org.infinispan.server.test.client.rest.RESTHelper.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test example-configuration file clustered-two-nodes.xml. Simply create cluster of 2 nodes and use
@@ -100,7 +100,7 @@ public class TwoNodesConfigExampleTest {
     }
 
     @Test
-    public void tesTwoNodesConfigExample() throws Exception {
+    public void testTwoNodesConfigExample() throws Exception {
         RemoteInfinispanCache ric = server1.getCacheManager(CACHE_MANAGER_NAME).getCache(DEFAULT_CACHE_NAME);
         RemoteInfinispanCache ric2 = server2.getCacheManager(CACHE_MANAGER_NAME).getCache(DEFAULT_CACHE_NAME);
         RemoteCache<String, String> rc1 = rcm1.getCache(DEFAULT_CACHE_NAME);
