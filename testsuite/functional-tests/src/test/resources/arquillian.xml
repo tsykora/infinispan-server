@@ -283,7 +283,7 @@
         </container>
     </group>
 
-    <group qualifier="rest-client-local">
+    <group qualifier="client-local">
         <container qualifier="container1" mode="suite">
             <configuration>
                 <property name="jbossHome">${server1.dist}</property>
@@ -297,7 +297,7 @@
         </container>
     </group>
 
-    <group qualifier="rest-client-multinode-dist">
+    <group qualifier="client-multinode-dist">
         <container qualifier="container1" mode="suite">
             <configuration>
                 <property name="jbossHome">${server1.dist}</property>
@@ -323,7 +323,7 @@
         </container>
     </group>
 
-    <group qualifier="rest-client-multinode-repl">
+    <group qualifier="client-multinode-repl">
         <container qualifier="container1" mode="suite">
             <configuration>
                 <property name="jbossHome">${server1.dist}</property>

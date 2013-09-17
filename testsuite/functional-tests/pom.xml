@@ -658,14 +658,7 @@
                         </configuration>
                     </execution>
 
-                    <!-- Define another execution with the same TEST class but with different arquillian lunch for local/multiple etc.
-                         or even with different options (stack?)
-                         Can I pass something to arquillian.xml via systemPropertyVariables??? -->
-
-                    <!-- REST-client tests -->
-                    <!-- REST-client tests -->
-                    <!-- REST-client tests -->
-
+                    <!-- REST CLIENT -->
                     <execution>
                         <id>rest-client-local.surefire</id>
                         <phase>test</phase>
@@ -677,12 +670,10 @@
                                 <include>org/infinispan/server/test/client/rest/RESTClientTest.java</include>
                             </includes>
                             <systemPropertyVariables>
-                                <arquillian.launch>rest-client-local</arquillian.launch>
+                                <arquillian.launch>client-local</arquillian.launch>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
-
-
                     <execution>
                         <id>rest-client-multinode-dist.surefire</id>
                         <phase>test</phase>
@@ -695,11 +686,10 @@
                                 <include>org/infinispan/server/test/client/rest/RESTAsyncTest.java</include>
                             </includes>
                             <systemPropertyVariables>
-                                <arquillian.launch>rest-client-multinode-dist</arquillian.launch>
+                                <arquillian.launch>client-multinode-dist</arquillian.launch>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
-
                     <execution>
                         <id>rest-client-multinode-repl.surefire</id>
                         <phase>test</phase>
@@ -712,7 +702,54 @@
                                 <include>org/infinispan/server/test/client/rest/RESTAsyncTest.java</include>
                             </includes>
                             <systemPropertyVariables>
-                                <arquillian.launch>rest-client-multinode-repl</arquillian.launch>
+                                <arquillian.launch>client-multinode-repl</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+
+                    <!-- MEMCACHED CLIENT -->
+                    <execution>
+                        <id>memcached-client-local.surefire</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>org/infinispan/server/test/client/memcached/MemcachedSingleNodeTest.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <arquillian.launch>client-local</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>memcached-client-multinode-dist.surefire</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>org/infinispan/server/test/client/memcached/MemcachedClusteredTest.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <arquillian.launch>client-multinode-dist</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>memcached-client-multinode-repl.surefire</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>org/infinispan/server/test/client/memcached/MemcachedClusteredTest.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <arquillian.launch>client-multinode-repl</arquillian.launch>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
