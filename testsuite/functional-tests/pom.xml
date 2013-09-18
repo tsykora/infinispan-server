@@ -39,6 +39,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
         </dependency>
+        <!--- @ThreadSafe annotation -->
+        <dependency>
+            <groupId>net.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -753,6 +758,57 @@
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
+
+                    <!-- HOTROD CLIENT -->
+                    <!-- TODO: decide: hotrod tests for local mode: is it relevant? -->
+                    <!--<execution>-->
+                        <!--<id>hotrod-client-local.surefire</id>-->
+                        <!--<phase>test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>test</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<includes>-->
+                                <!--<include>org/infinispan/server/test/client/hotrod/HotRodRemoteCacheTest.java</include>-->
+                                <!--<include>org/infinispan/server/test/client/hotrod/HotRodRemoteCacheManagerTest.java</include>-->
+                            <!--</includes>-->
+                            <!--<systemPropertyVariables>-->
+                                <!--<arquillian.launch>client-local</arquillian.launch>-->
+                            <!--</systemPropertyVariables>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                    <execution>
+                        <id>hotrod-client-multinode-dist.surefire</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>org/infinispan/server/test/client/hotrod/HotRodRemoteCacheTest.java</include>
+                                <include>org/infinispan/server/test/client/hotrod/HotRodRemoteCacheManagerTest.java</include>
+                            </includes>
+                            <systemPropertyVariables>
+                                <arquillian.launch>client-multinode-dist</arquillian.launch>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                    <!--<execution>-->
+                        <!--<id>hotrod-client-multinode-repl.surefire</id>-->
+                        <!--<phase>test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>test</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<includes>-->
+                                <!--<include>org/infinispan/server/test/client/hotrod/HotRodRemoteCacheTest.java</include>-->
+                                <!--<include>org/infinispan/server/test/client/hotrod/HotRodRemoteCacheManagerTest.java</include>-->
+                            <!--</includes>-->
+                            <!--<systemPropertyVariables>-->
+                                <!--<arquillian.launch>client-multinode-repl</arquillian.launch>-->
+                            <!--</systemPropertyVariables>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
 
 
                 </executions>
