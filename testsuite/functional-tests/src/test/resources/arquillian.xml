@@ -295,6 +295,20 @@
                 <property name="waitForPorts">11211 11222 8080</property>
             </configuration>
         </container>
+        <!--  The second container definition is here to satisfy infinispan-arquillian-container
+              injections - to not complain that there are 2 injected containers into a test class
+              but only one definition in arquillian.xml  -->
+        <container qualifier="container2" mode="manual">
+            <configuration>
+                <property name="jbossHome">${server1.dist}</property>
+                <property name="serverConfig">client-local/standalone.xml</property>
+                <property name="javaVmArguments">${server.jvm.args} -Djboss.node.name=node0
+                    -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+                </property>
+                <property name="managementPort">9999</property>
+                <property name="waitForPorts">11211 11222 8080</property>
+            </configuration>
+        </container>
     </group>
 
     <group qualifier="client-multinode-dist">
@@ -348,6 +362,4 @@
             </configuration>
         </container>
     </group>
-
-
 </arquillian>

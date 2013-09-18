@@ -459,7 +459,6 @@ public abstract class AbstractRemoteCacheManagerTest {
     * NOTE: only initialised during HotRod operation execution, so need to fire off a ping to get it set
     */
    private String getHashFunctionImplProperty(RemoteCache rc) throws Exception {
-
       RemoteCacheImpl rci = (RemoteCacheImpl) rc;
       OperationsFactory of = getOperationsFactoryField(rci);
       TcpTransportFactory ttf = (TcpTransportFactory) getTransportFactoryField(of);

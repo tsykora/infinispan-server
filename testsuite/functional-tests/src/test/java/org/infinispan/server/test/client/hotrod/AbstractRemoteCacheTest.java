@@ -13,6 +13,7 @@ import org.infinispan.client.hotrod.configuration.ConfigurationBuilder;
 import org.infinispan.commons.util.concurrent.NotifyingFuture;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -27,11 +28,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 
 /**
- * Tests for HotRod client and its RemoteCache API. Subclasses must provide
- * a way to get the list of remote HotRod servers and to assert the cache is empty.
- *
- * Subclasses may be used in Client-Server mode or Hybrid mode where HotRod server
- * runs as a library deployed in an application server.
+ * Tests for HotRod client and its RemoteCache API. Subclasses must provide a way to get the list of remote HotRod
+ * servers and to assert the cache is empty.
+ * <p/>
+ * Subclasses may be used in Client-Server mode or Hybrid mode where HotRod server runs as a library deployed in an
+ * application server.
  *
  * @author Richard Achmatowicz
  * @author Martin Gencur
@@ -120,7 +121,9 @@ public abstract class AbstractRemoteCacheTest {
    }
 
    private long numEntriesOnServer(int serverIndex) {
-      return getServers().get(serverIndex).getDefaultCacheManager().getCache(TEST_CACHE_NAME).getNumberOfEntries();
+      return getServers().get(serverIndex).
+            getCacheManager(AbstractRemoteCacheManagerTest.isLocalMode() ? "local" : "clustered").
+            getCache(TEST_CACHE_NAME).getNumberOfEntries();
    }
 
    /*
@@ -431,7 +434,7 @@ public abstract class AbstractRemoteCacheTest {
       VersionedValue valueBinary = remoteCache.getVersioned("aKey");
       assertTrue(valueBinary != null);
       assertEquals(valueBinary.getValue(), "aValue");
-     // log.info("Version is: " + valueBinary.getVersion());
+      // log.info("Version is: " + valueBinary.getVersion());
 
       // now put the same value
       remoteCache.put("aKey", "aValue");
@@ -949,10 +952,14 @@ public abstract class AbstractRemoteCacheTest {
    /*
     * Test getVersion method - it returns the infinispan version, which we're comparing with the version we have set
     * in the testsuite pom - so it also works as a simple check for us
+    *
+    * Leftover from migration:
+    * Ignore? Do we still need this check in Infinispan server? Or add/change to any other version check?
     */
+   @Ignore
    @Test
    public void testGetVersion() throws Exception {
-       assertEquals(System.getProperty("version.infinispan"), remoteCache.getVersion());
+      assertEquals(System.getProperty("version.infinispan"), remoteCache.getVersion());
    }
 
    /*
@@ -971,7 +978,7 @@ public abstract class AbstractRemoteCacheTest {
       return System.currentTimeMillis() - start;
    }
 
-   protected  <T extends Map<String, String>> void fill(T map, int entryCount) {
+   protected <T extends Map<String, String>> void fill(T map, int entryCount) {
       for (int i = 0; i != entryCount; i++) {
          map.put("key" + i, "value" + i);
       }
