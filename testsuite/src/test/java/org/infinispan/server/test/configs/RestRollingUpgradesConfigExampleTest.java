@@ -19,12 +19,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 /**
- * Test for HotRod Rolling Upgrades functionality: https://community.jboss.org/wiki/DesignForRollingUpgradesInInfinispan
- * + https://community.jboss.org/wiki/RollingUpgradesForRemoteClientsUsingHotRod
- * <p/>
+ * Test for REST Rolling Upgrades functionality.
+ *
  * This is basic Rolling Upgrades test which tests only 1 node to 1 node, both nodes of the same version.
  * <p/>
- * target node = node1 (standalone-rest-rolling-upgrade.xml)
+ * target node = node1 (standalone-hotrod-rolling-upgrade.xml)
  * source node = node2 (standalone.xml)
  * <p/>
  * <p/>
@@ -38,7 +37,7 @@ import static org.junit.Assert.assertNull;
  * @author <a href="mailto:tsykora@redhat.com">Tomas Sykora</a>
  */
 @RunWith(Arquillian.class)
-public class HotRodRollingUpgradesConfigExampleTest {
+public class RestRollingUpgradesConfigExampleTest {
 
     // Target node
     final int managementPortServer1 = 9999;
@@ -66,7 +65,7 @@ public class HotRodRollingUpgradesConfigExampleTest {
     RemoteCacheManager rcm2;
 
     @Test
-    public void testHotRodRollingUpgrades() throws Exception {
+    public void testRestRollingUpgrades() throws Exception {
 
         controller.start(CONTAINER2);
         Configuration conf2 = createTestBuilder11322().build();
@@ -118,11 +117,11 @@ public class HotRodRollingUpgradesConfigExampleTest {
         invokeOperation(provider2, rollMan.toString(), "recordKnownGlobalKeyset", new Object[]{}, new String[]{});
 
         invokeOperation(provider1, rollMan.toString(), "synchronizeData",
-                new Object[]{"hotrod"},
+                new Object[]{"rest"},
                 new String[]{"java.lang.String"});
 
         invokeOperation(provider1, rollMan.toString(), "disconnectSource",
-                new Object[]{"hotrod"},
+                new Object[]{"rest"},
                 new String[]{"java.lang.String"});
 
         // is source (RemoteCacheStore) really disconnected?
